@@ -12,10 +12,10 @@
     <!-- Форма добавления товара -->
     <h2>Добавить новый товар</h2>
     <form id="add-product-form">
-        <input type="text" id="name" placeholder="Название товара" required />
-        <input type="number" id="price" placeholder="Цена товара" required />
+        <textarea id="name" placeholder="Название товара" required ></textarea>
+        <textarea id="price" placeholder="Цена товара" required ></textarea>
         <textarea id="description" placeholder="Описание товара" required></textarea>
-        <input type="text" id="category" placeholder="Категория товара (через запятую)" required />
+        <textarea id="category" placeholder="Категория товара (через запятую)" required ></textarea>
         <button type="submit">Добавить товар</button>
     </form>
 
@@ -24,7 +24,17 @@
     <h2>Список товаров</h2>
     <div id="products-container"></div>
 
+    <hr />
+
+    <!-- Чат -->
+    
+    <div id="chat-container">
+        <h2>Чат с покупателями</h2>
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-message-input" placeholder="Введите сообщение..." />
+        <button id="send-message-button">Отправить</button>
+    </div>
+
     <script src="admin.js"></script>
 </body>
 </html>
-

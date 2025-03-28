@@ -56,6 +56,7 @@ button.edit-btn, button.delete-btn {
     margin-top: 10px;
     padding: 5px 10px;
     font-size: 14px;
+    width: 90%;
 }
 
 button.edit-btn {
@@ -74,3 +75,36 @@ button.delete-btn:hover {
     background-color: #e53935;
 }
 
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-messages {
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background: #f9f9f9;
+}
+
+#chat-message-input {
+    width: calc(100% - 80px);
+    padding: 5px;
+    margin-top: 5px;
+}
+
+#send-message-button {
+    width: 70px;
+    margin-top: 5px;
+}

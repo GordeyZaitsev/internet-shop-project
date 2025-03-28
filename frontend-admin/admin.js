@@ -1,6 +1,9 @@
+let socket;
+
 document.addEventListener("DOMContentLoaded", () => {
     // Загружаем список товаров
     fetchProducts();
+    setupChat(); // Настроим чат
 
     // Обработка формы добавления товара
     const addProductForm = document.getElementById("add-product-form");
@@ -102,4 +105,39 @@ function deleteProduct(id) {
         .catch(error => console.error("Ошибка удаления товара:", error));
     }
 }
-  
+
+// === ЧАТ ===
+function setupChat() {
+    // Устанавливаем WebSocket соединение
+    socket = new WebSocket("ws://localhost:5000");
+
+    // Обработка входящих сообщений
+    socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);  // Парсим JSON
+        const message = data.text;  // Получаем текст сообщения
+        displayMessage(message, "user");  // Показываем сообщение
+    };
+    
+
+    // Отправка сообщений через WebSocket
+    const messageInput = document.getElementById("chat-message-input");
+    const sendButton = document.getElementById("send-message-button");
+
+    sendButton.addEventListener("click", () => {
+        const message = messageInput.value;
+        if (message.trim()) {
+            socket.send(message); // Отправляем сообщение
+            //displayMessage("Админ: ", "admin"); // Показать сообщение от администратора
+            messageInput.value = ""; // Очищаем поле ввода
+        }
+    });
+}
+
+// Функция для отображения сообщений в чате
+function displayMessage(message, sender) {
+    const chatContainer = document.getElementById("chat-messages");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add(sender === "user" ? "user-message" : "admin-message");
+    messageElement.textContent = message;
+    chatContainer.appendChild(messageElement);
+}
